@@ -1,5 +1,3 @@
-from domain.book import Book
-
 
 class MemoryStorage:
     def __init__(self):

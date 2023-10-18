@@ -7,7 +7,6 @@ def create_app():
     app = Flask(__name__)
     app.register_blueprint(book_bp, url_prefix="/books/")
     app.config["CONTEXT"] = Context()
-
     return app
 
 

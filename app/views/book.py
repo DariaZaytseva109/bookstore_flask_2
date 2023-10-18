@@ -12,7 +12,6 @@ bp = Blueprint("book", __name__)
 @bp.route("/")
 def get_books():
     ctx = get_context(current_app)
-
     return json.dumps([dataclasses.asdict(b) for b in ctx.book_service.get()]).encode(encoding='utf-8')
 
 
@@ -27,7 +26,5 @@ def add_book():
 @bp.route("/<id>", methods=["DELETE"])
 def delete_book(id):
     ctx = get_context(current_app)
-
     ctx.book_service.delete(id)
-
     return {}
