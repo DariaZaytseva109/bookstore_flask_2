@@ -12,7 +12,9 @@ bp = Blueprint("book", __name__)
 @bp.route("/")
 def get_books():
     ctx = get_context(current_app)
-    return json.dumps([dataclasses.asdict(b) for b in ctx.book_service.get()], ensure_ascii=False).encode('utf-8')
+    return json.dumps([dataclasses.asdict(b)
+                       for b in ctx.book_service.get()],
+                      ensure_ascii=False).encode('utf-8')
 
 
 @bp.route("/", methods=["POST"])

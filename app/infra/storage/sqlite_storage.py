@@ -16,9 +16,11 @@ class SQLiteStorage:
 
     def db_add(self, book):
         self.id += 1
-        query = f"INSERT INTO {self.table_name}('id', 'title', 'description', " \
+        query = f"INSERT INTO {self.table_name}(" \
+                f"'id', 'title', 'description', " \
                 f"'publish_year', 'pages_count', 'created_at') " \
-                f"VALUES({self.id}, '{book.title}', '{book.description}', {book.publish_year}, {book.pages_count}, " \
+                f"VALUES({self.id}, '{book.title}', '{book.description}', " \
+                f"{book.publish_year}, {book.pages_count}, " \
                 f"date('{book.created_at}'))"
         print(query)
         self.cursor.execute(query)
@@ -32,4 +34,5 @@ class SQLiteStorage:
         query = f"SELECT * FROM {self.table_name}"
         all_books = self.cursor.execute(query)
 
-        return list(map(lambda x: Book(x[1], x[2], x[3], x[4], x[5]), all_books.fetchall()))
+        return list(map(lambda x: Book(x[1], x[2], x[3], x[4], x[5]),
+                        all_books.fetchall()))

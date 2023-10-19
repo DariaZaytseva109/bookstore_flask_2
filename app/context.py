@@ -6,7 +6,9 @@ class Context:
     def __init__(self):
         book_storage = SQLiteStorage("test.db", "book")
         self.book_service = BookService(book_storage)
-        book_storage.db_create_table(["id", "title", "description", "publish_year", "pages_count", "created_at"])
+        book_storage.db_create_table(["id", "title", "description",
+                                      "publish_year", "pages_count",
+                                      "created_at"])
 
 
 def get_context(app):
